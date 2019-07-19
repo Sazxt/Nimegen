@@ -1,5 +1,6 @@
 import requests,sys,time;from bs4 import BeautifulSoup
 from requests.exceptions import ConnectionError;import os
+# -*- coding: UTF-8 -*-.
 #--------Warna
 i="\033[32m" #hijau
 cg="\033[36m" #cyan gelap
@@ -12,7 +13,7 @@ pb="\033[47m" #putihbold
 m="\033[31m" #merah
 b="\033[34m" # Biru
 #------------------#
-banr = "\n         \x1b[34m\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mAuthor   \x1b[37m: Sazxt\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mMy Team  \x1b[37m: Black Coder Crush\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mwhatsapp \x1b[37m: 083892081021\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mCodeName \x1b[37m: \x1b[36mSakuraNime \x1b[0;1mv1.2\n         \x1b[34m\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d\n"
+banr = "\n         \x1b[34m\xe2\x95\x94\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x97\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mAuthor   \x1b[37m: Sazxt\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mMy Team  \x1b[37m: Black Coder Crush\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mwhatsapp \x1b[37m: 083892081021\n           \x1b[31m\xe2\x8f\xa3 \x1b[32mCodeName \x1b[37m: \x1b[36mSakuraNime \x1b[0;1mv1.3\n         \x1b[34m\xe2\x95\x9a\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x90\xe2\x95\x9d\n"
 def ap(u):
 	for s in u + "\n":
 		sys.stdout.write(s)
@@ -33,34 +34,24 @@ def on():
 		print banr
 		print "\n"+gr+nx
 		a = requests.get("https://sakuranime.com/page/"+str(c)).text;link = []
-		soup = BeautifulSoup(a,"html.parser");tit = []
-		for s in soup.find_all("a"):
-			tit.append(s.get("title"))
+		soup = BeautifulSoup(a,"html.parser");tit=[];ko = 0
+		print soup.title.string
+		for s in soup.find_all("h3"):
+			ko += 1
+			print "\033[34m[\033[37m%s\033[34m] \033[37m"%(str(ko))+s.get_text().replace("\n","")
 		for n in soup.find_all("a"):
 			link.append(n.get("href"))
-		print soup.title.string
-		print """
-\033[34m[\033[37m1\033[34m] \033[37m{b}
-\033[34m[\033[37m2\033[34m] \033[37m{a}
-\033[34m[\033[37m3\033[34m] \033[37m{u}
-\033[34m[\033[37m4\033[34m] \033[37m{pn}
-\033[34m[\033[37m5\033[34m] \033[37m{flot}
-\033[34m[\033[37m6\033[34m] \033[37m{bx}
-\033[34m[\033[37m7\033[34m] \033[37m{ox}
-\033[34m[\033[37m8\033[34m] \033[37m{lax}
-\033[34m[\033[37m9\033[34m] \033[37m{pat}
-\033[34m[\033[37m10\033[34m] \033[37m{flor}
-\033[34m[\033[32mN\033[34m] \033[37mNex pages !
-\033[34m[\033[32mB\033[34m] \033[37mBack Pages !
-\033[34m[\033[37m12\033[34m] \033[37mExit
-		""".format(b=tit[12],a=tit[17],u=tit[22],pn=tit[27],flot=tit[32],bx=tit[37],ox=tit[42],lax=tit[47],pat=tit[52],flor=tit[57])
+		print "\033[34m[\033[32mN\033[34m] \033[37mNex pages !"
+		print "\033[34m[\033[32mB\033[34m] \033[37mBack Pages !"
+		print "\033[34m[\033[37mE\033[34m] \033[37mExit"
 		print gr+nx
 		lop = raw_input("%s[%s+%s] %sPilih Menu : %s"%(b,m,b,gr,i))
 		if lop == "1":
 			os.system("clear")
 			print banr
-			u = requests.get(link[9]).text
+			u = requests.get(link[12]).text
 			xsoup = BeautifulSoup(u,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+xsoup.title.string
 			print "\n"+gr+nx
 			for s in xsoup.find_all("h3"):
 				print s.get_text()
@@ -70,8 +61,9 @@ def on():
 		elif lop == "2":
 			os.system("clear")
 			print banr
-			ba = requests.get(link[13]).text
+			ba = requests.get(link[14]).text
 			zn = BeautifulSoup(ba,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+zn.title.string
 			print "\n"+gr+nx
 			for s in zn.find_all("h3"):
 				print s.get_text()
@@ -81,8 +73,9 @@ def on():
 		elif lop == "3":
 			os.system("clear")
 			print banr
-			xu = requests.get(link[22]).text
+			xu = requests.get(link[19]).text
 			ab = BeautifulSoup(xu,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+ab.title.string
 			print "\n"+gr+nx
 			for s in ab.find_all("h3"):
 				print s.get_text()
@@ -94,6 +87,7 @@ def on():
 			print banr
 			nu = requests.get(link[23]).text
 			bi = BeautifulSoup(nu,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+bi.title.string
 			print "\n"+gr+nx
 			for s in bi.find_all("h3"):
 				print s.get_text()
@@ -103,8 +97,9 @@ def on():
 		elif lop == "5":
 			os.system("clear")
 			print banr
-			ox = requests.get(link[28]).text
+			ox = requests.get(link[29]).text
 			bo = BeautifulSoup(ox,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+bo.title.string
 			print "\n"+gr+nx
 			for s in bo.find_all("h3"):
 				print s.get_text()
@@ -116,6 +111,7 @@ def on():
 			print banr
 			ol = requests.get(link[34]).text
 			bm = BeautifulSoup(ol,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+bm.title.string
 			print "\n"+gr+nx
 			for s in bm.find_all("h3"):
 				print s.get_text()
@@ -125,8 +121,9 @@ def on():
 		elif lop == "7":
 			os.system("clear")
 			print banr
-			np = requests.get(link[38]).text
+			np = requests.get(link[39]).text
 			no = BeautifulSoup(np,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+no.title.string
 			print "\n"+gr+nx
 			for s in no.find_all("h3"):
 				print s.get_text()
@@ -136,8 +133,9 @@ def on():
 		elif lop == "8":
 			os.system("clear")
 			print banr
-			mo = requests.get(link[43]).text
+			mo = requests.get(link[44]).text
 			vo = BeautifulSoup(mo,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+vo.title.string
 			print "\n"+gr+nx
 			for s in vo.find_all("h3"):
 				print s.get_text()
@@ -147,8 +145,9 @@ def on():
 		elif lop == "9":
 			os.system("clear")
 			print banr
-			bp = requests.get(link[48]).text
+			bp = requests.get(link[49]).text
 			bl = BeautifulSoup(bp,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+bl.title.string
 			print "\n"+gr+nx
 			for s in bl.find_all("h3"):
 				print s.get_text()
@@ -160,6 +159,7 @@ def on():
 			print banr
 			bnp = requests.get(link[54]).text
 			lox = BeautifulSoup(bnp,"html.parser")
+			print m+"["+b+"/"+m+"]"+gr+lox.title.string
 			print "\n"+gr+nx
 			for s in lox.find_all("h3"):
 				print s.get_text()
@@ -186,6 +186,8 @@ def on():
 		on()
 	except EOFError:
 		sys.exit()
+	#except:
+		#print "%s[%s!%s] %sSory Pliss checking Update ! %sSeperti nya ada kesalahan Dari Program "%(b,m,b,i,gr)
 #def pages(no):
 	#os.system("clear")
 	#sh = requests.get("https://sakuranime.com/page/"+no)
